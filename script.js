@@ -44,6 +44,8 @@ $(function () {
     //Get the text area text from local storage
     if(localStorage.getItem(elementId) !== null) {
       textAreaText = localStorage.getItem(elementId)
+    } else {
+      textAreaText = '';
     }
     //Create the elements 
     calElement = $('<div id="'+elementId+'" class="row time-block '+eleClass+'"> \
@@ -55,7 +57,9 @@ $(function () {
   </div>');
   $('.container-lg').append(calElement);
   }
- 
+  $('.saveBtn').on('click', function() {
+    localStorage.setItem($(this).parent().attr('id'), $(this).prev().val());
+  });
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
